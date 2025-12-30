@@ -1,0 +1,46 @@
+plugins {
+    id 'application'
+    id 'jacoco'
+}
+
+apply from: 'dependencies.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
+dependencies {
+    annotationProcessor libs.lombok
+
+    implementation libs.lombok
+    implementation (libs.springbootMongo) {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    }
+    implementation (libs.springbootRest) {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    }
+    implementation loggingDeps
+    implementation libs.springFoxSwaggerUi
+
+    testImplementation (libs.springbootTest) {
+        exclude group: "junit", module: "junit"
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    }
+    testImplementation libs.junit5
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+    dependsOn test
+}
+
+jacoco {
+    toolVersion = "0.8.12"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}

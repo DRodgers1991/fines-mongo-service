@@ -1,0 +1,27 @@
+ext {
+
+    springBootVersion = '3.3.3'
+    lombokVersion = '1.18.24'
+    loggingVersion = '2.23.1'
+    swaggerVersion = '2.5.0'
+    junitVersion = '5.3.2'
+
+    libs = [
+            springbootMongo : "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}",
+            springbootRest : "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}",
+            springbootTest : "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
+            springFoxSwaggerUi : "org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}",
+            junit5 : "org.junit.jupiter:junit-jupiter-engine:${junitVersion}",
+            lombok : "org.projectlombok:lombok:${lombokVersion}",
+            log4jSlf: "org.apache.logging.log4j:log4j-slf4j2-impl:${loggingVersion}",
+            log4jCore: "org.apache.logging.log4j:log4j-slf4j2-impl:${loggingVersion}",
+            log4jApi: "org.apache.logging.log4j:log4j-slf4j2-impl:${loggingVersion}"
+    ]
+
+    loggingDeps = [
+            libs.log4jApi,
+            libs.log4jCore,
+            libs.log4jSlf
+    ]
+
+}
