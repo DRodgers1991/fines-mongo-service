@@ -1,6 +1,5 @@
-package com.rodgers.data.controllers;
+package com.rodgers.fines.data.controllers;
 
-import com.rodgers.fines.data.controllers.ClubEntityController;
 import com.rodgers.fines.data.repository.ClubRepository;
 import com.rodgers.fines.data.vo.Club;
 import org.junit.jupiter.api.Test;

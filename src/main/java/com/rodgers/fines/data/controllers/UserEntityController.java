@@ -1,14 +1,14 @@
 package com.rodgers.fines.data.controllers;
 
 import com.rodgers.fines.data.repository.UserRepository;
+import com.rodgers.fines.data.vo.LoginRequest;
 import com.rodgers.fines.data.vo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "users")
@@ -17,10 +17,23 @@ public class UserEntityController {
 
     @Autowired
     private UserRepository userRepository;
+    private final BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
-    @GetMapping("findAll")
-    public List<User> findAll() {
-        return userRepository.findAll();
+    @GetMapping("validLogin")
+    public ResponseEntity<String> validLogin(@RequestBody() LoginRequest request) {
+        User user = userRepository.findByUserName(request.getUsername());
+        if(user != null) {
+            if(ENCODER.matches(request.getPassword(), user.getPassword())) {
+                if(log.isDebugEnabled()) {
+                    log.debug("Valid Login attempt for {} ",user.getUserName());
+                }
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        if(log.isDebugEnabled()) {
+            log.debug("Invalid Login attempt for {} ",request.getUsername());
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("findByUserName")
