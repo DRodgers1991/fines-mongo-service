@@ -1,6 +1,6 @@
-package com.rodgers.data.repository;
+package com.rodgers.fines.data.repository;
 
-import com.rodgers.data.vo.User;
+import com.rodgers.fines.data.vo.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

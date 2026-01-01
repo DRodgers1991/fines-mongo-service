@@ -1,4 +1,4 @@
-package com.rodgers.data.vo;
+package com.rodgers.fines.data.vo;
 
 import lombok.Getter;
 import lombok.Setter;

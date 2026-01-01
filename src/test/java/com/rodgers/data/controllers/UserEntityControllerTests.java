@@ -1,7 +1,8 @@
 package com.rodgers.data.controllers;
 
-import com.rodgers.data.repository.UserRepository;
-import com.rodgers.data.vo.User;
+import com.rodgers.fines.data.controllers.UserEntityController;
+import com.rodgers.fines.data.repository.UserRepository;
+import com.rodgers.fines.data.vo.User;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

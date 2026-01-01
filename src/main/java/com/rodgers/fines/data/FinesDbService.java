@@ -1,4 +1,4 @@
-package com.rodgers.data;
+package com.rodgers.fines.data;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

@@ -3,5 +3,9 @@ spring:
     mongodb:
       uri: mongodb+srv://darrenwrodgers:E1Gk0j2djzdjfbsM@fines-database.h45cp.mongodb.net/?retryWrites=true&w=majority&appName=fines-database
       database: fines-database
+  security:
+    user:
+      name: admin
+      password: password
 server:
   port: 8080
