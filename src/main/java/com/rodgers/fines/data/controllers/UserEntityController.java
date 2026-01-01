@@ -1,7 +1,7 @@
-package com.rodgers.data;
+package com.rodgers.fines.data.controllers;
 
-import com.rodgers.data.repository.UserRepository;
-import com.rodgers.data.vo.User;
+import com.rodgers.fines.data.repository.UserRepository;
+import com.rodgers.fines.data.vo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

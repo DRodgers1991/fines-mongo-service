@@ -1,7 +1,8 @@
-package com.rodgers.data;
+package com.rodgers.data.controllers;
 
-import com.rodgers.data.repository.ClubRepository;
-import com.rodgers.data.vo.Club;
+import com.rodgers.fines.data.controllers.ClubEntityController;
+import com.rodgers.fines.data.repository.ClubRepository;
+import com.rodgers.fines.data.vo.Club;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

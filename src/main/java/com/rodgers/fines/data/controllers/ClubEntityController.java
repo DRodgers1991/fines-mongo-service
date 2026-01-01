@@ -1,7 +1,7 @@
-package com.rodgers.data;
+package com.rodgers.fines.data.controllers;
 
-import com.rodgers.data.repository.ClubRepository;
-import com.rodgers.data.vo.Club;
+import com.rodgers.fines.data.repository.ClubRepository;
+import com.rodgers.fines.data.vo.Club;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

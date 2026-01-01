@@ -23,6 +23,10 @@ dependencies {
     implementation (libs.springbootRest) {
         exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
     }
+    implementation (libs.springbootSecurity) {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    }
+
     implementation loggingDeps
     implementation libs.springFoxSwaggerUi
 

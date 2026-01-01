@@ -9,6 +9,7 @@ ext {
     libs = [
             springbootMongo : "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}",
             springbootRest : "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}",
+            springbootSecurity : "org.springframework.boot:spring-boot-starter-security:${springBootVersion}",
             springbootTest : "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
             springFoxSwaggerUi : "org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}",
             junit5 : "org.junit.jupiter:junit-jupiter-engine:${junitVersion}",
