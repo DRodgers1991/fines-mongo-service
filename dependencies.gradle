@@ -7,7 +7,7 @@ ext {
     junitVersion = '5.3.2'
 
     libs = [
-            springbootMongo : "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}",
+            springbootMongo : ("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}"),
             springbootRest : "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}",
             springbootSecurity : "org.springframework.boot:spring-boot-starter-security:${springBootVersion}",
             springbootTest : "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
@@ -23,6 +23,12 @@ ext {
             libs.log4jApi,
             libs.log4jCore,
             libs.log4jSlf
+    ]
+
+    springBootDeps = [
+            libs.springbootRest,
+            libs.springbootMongo,
+            libs.springbootSecurity
     ]
 
 }

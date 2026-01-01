@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+configurations.configureEach {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
+
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
@@ -17,22 +21,13 @@ dependencies {
     annotationProcessor libs.lombok
 
     implementation libs.lombok
-    implementation (libs.springbootMongo) {
-        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
-    }
-    implementation (libs.springbootRest) {
-        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
-    }
-    implementation (libs.springbootSecurity) {
-        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
-    }
+    implementation springBootDeps
 
     implementation loggingDeps
     implementation libs.springFoxSwaggerUi
 
     testImplementation (libs.springbootTest) {
         exclude group: "junit", module: "junit"
-        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
     }
     testImplementation libs.junit5
 }
