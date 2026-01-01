@@ -1,6 +1,7 @@
 package com.rodgers.data.vo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
@@ -8,14 +9,13 @@ import org.springframework.data.annotation.Id;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class User {
 
     @Id
     private String id;
     private String userName;
-    public User() {
-        //no-op - for Spring
-    }
+    private String password;
 
     public User(String userName) {
         this.userName = userName;

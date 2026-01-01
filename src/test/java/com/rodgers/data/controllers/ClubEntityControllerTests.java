@@ -1,4 +1,4 @@
-package com.rodgers.data;
+package com.rodgers.data.controllers;
 
 import com.rodgers.data.repository.ClubRepository;
 import com.rodgers.data.vo.Club;
