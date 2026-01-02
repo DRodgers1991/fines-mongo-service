@@ -19,7 +19,7 @@ public class UserEntityController {
     private UserRepository userRepository;
     private final BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
-    @GetMapping("validLogin")
+    @PostMapping("validLogin")
     public ResponseEntity<String> validLogin(@RequestBody() LoginRequest request) {
         User user = userRepository.findByUserName(request.getUsername());
         if(user != null) {
