@@ -21,6 +21,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //TODO - if not on localhost do not disable CSRF, configure correctly
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
