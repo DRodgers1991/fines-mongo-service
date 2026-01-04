@@ -24,7 +24,6 @@ dependencies {
     implementation springBootDeps
 
     implementation loggingDeps
-    implementation libs.springFoxSwaggerUi
 
     testImplementation (libs.springbootTest) {
         exclude group: "junit", module: "junit"
