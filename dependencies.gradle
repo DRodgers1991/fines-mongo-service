@@ -10,7 +10,6 @@ ext {
             springbootRest : "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}",
             springbootSecurity : "org.springframework.boot:spring-boot-starter-security:${springBootVersion}",
             springbootTest : "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
-            springFoxSwaggerUi : "org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}",
             junit5 : "org.junit.jupiter:junit-jupiter-engine:${junitVersion}",
             lombok : "org.projectlombok:lombok:${lombokVersion}",
             log4jSlf: "org.apache.logging.log4j:log4j-slf4j2-impl:${loggingVersion}",
