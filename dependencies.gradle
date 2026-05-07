@@ -2,7 +2,7 @@ ext {
 
     springBootVersion = '3.5.10'
     lombokVersion = '1.18.42'
-    loggingVersion = '2.25.4'
+    loggingVersion = '2.26.0'
     junitVersion = '6.0.2'
 
     libs = [
