@@ -3,7 +3,7 @@ ext {
     springBootVersion = '3.5.10'
     lombokVersion = '1.18.42'
     loggingVersion = '2.26.0'
-    junitVersion = '6.0.2'
+    junitVersion = '6.0.3'
 
     libs = [
             springbootMongo : ("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}"),
