@@ -28,7 +28,7 @@ dependencies {
     testImplementation (libs.springbootTest) {
         exclude group: "junit", module: "junit"
     }
-    testImplementation libs.junit5
+    testRuntimeOnly libs.junitplatform
 }
 
 test {
