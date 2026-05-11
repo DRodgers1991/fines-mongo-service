@@ -18,11 +18,6 @@ public class ClubEntityController {
     @Autowired
     private ClubRepository clubRepository;
 
-    @GetMapping("findAll")
-    public List<Club> findAll() {
-        return clubRepository.findAll();
-    }
-
     @GetMapping("findByClubName")
     public Club findByClubName(@RequestParam("club") String clubName) {
         return clubRepository.findByClubName(clubName);
@@ -31,6 +26,16 @@ public class ClubEntityController {
     @GetMapping("findById")
     public Club findById(@RequestParam("id") String id) {
         return clubRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping("findByAdminId")
+    public Club findByAdminId(@RequestParam("adminId") String adminId) {
+        return clubRepository.findByAdminId(adminId);
+    }
+
+    @GetMapping("findByMemberIds")
+    public List<Club> findByMemberIds(@RequestParam("memberIds") List<String> memberIds) {
+        return clubRepository.findByMemberIdIn(memberIds);
     }
 
     @PutMapping("addClub")

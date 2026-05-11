@@ -28,20 +28,6 @@ class ClubEntityControllerTests {
     ClubEntityController controller = new ClubEntityController();
 
     @Test
-    public void testFindAllEmptyList() {
-        when(clubRepository.findAll()).thenReturn(new ArrayList<>());
-        assertEquals(0, controller.findAll().size());
-    }
-
-    @Test
-    public void testFindAllNonEmptyClubList() {
-        ArrayList<Club> clubs = new ArrayList<>(Arrays.asList(new Club("North Down","Darren Rodgers"),new Club("Big girls Bingo","Hollie Rodgers")));
-        when(clubRepository.findAll()).thenReturn(clubs);
-        assertEquals(2, controller.findAll().size());
-        assertEquals("Big girls Bingo", controller.findAll().get(1).getClubName());
-    }
-
-    @Test
     public void testFindByClubNameNotFound() {
         when(clubRepository.findByClubName("North Down")).thenReturn(new Club("North Down","Darren Rodgers"));
         when(clubRepository.findByClubName("Big girls Bingo")).thenReturn(new Club("Big girls Bingo","Hollie Rodgers"));
@@ -71,6 +57,38 @@ class ClubEntityControllerTests {
         when(clubRepository.findById("2")).thenReturn(Optional.of(new Club("Big girls Bingo","Hollie Rodgers")));
 
         assertNotNull(controller.findById("1"));
+    }
+
+    @Test
+    public void testFindByAdminIdNotFound() {
+        when(clubRepository.findByAdminId("admin1")).thenReturn(null);
+
+        assertNull(controller.findByAdminId("admin1"));
+    }
+
+    @Test
+    public void testFindByAdminIdFound() {
+        Club club = new Club("North Down","Darren Rodgers");
+        when(clubRepository.findByAdminId("admin1")).thenReturn(club);
+
+        assertNotNull(controller.findByAdminId("admin1"));
+        assertEquals("North Down", controller.findByAdminId("admin1").getClubName());
+    }
+
+    @Test
+    public void testFindByMemberIdsEmptyList() {
+        when(clubRepository.findByMemberIdIn(Arrays.asList("member1", "member2"))).thenReturn(new ArrayList<>());
+
+        assertEquals(0, controller.findByMemberIds(Arrays.asList("member1", "member2")).size());
+    }
+
+    @Test
+    public void testFindByMemberIdsNonEmptyList() {
+        ArrayList<Club> clubs = new ArrayList<>(Arrays.asList(new Club("North Down","Darren Rodgers"),new Club("Big girls Bingo","Hollie Rodgers")));
+        when(clubRepository.findByMemberIdIn(Arrays.asList("member1", "member2"))).thenReturn(clubs);
+
+        assertEquals(2, controller.findByMemberIds(Arrays.asList("member1", "member2")).size());
+        assertEquals("Big girls Bingo", controller.findByMemberIds(Arrays.asList("member1", "member2")).get(1).getClubName());
     }
 
     @Test
