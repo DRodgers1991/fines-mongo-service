@@ -29,16 +29,16 @@ class UserEntityControllerTests {
 
     @Test
     public void testFindByUserNameNotFound() {
-        when(userRepository.findByUserName("user1")).thenReturn(new User("user1"));
-        when(userRepository.findByUserName("user2")).thenReturn(new User("user2"));
+        when(userRepository.findByUsername("user1")).thenReturn(new User("user1"));
+        when(userRepository.findByUsername("user2")).thenReturn(new User("user2"));
 
         Assertions.assertNull(controller.findByUserName("Lucifer Morningstar"));
     }
 
     @Test
     public void testFindByUserNameFound() {
-        when(userRepository.findByUserName("user1")).thenReturn(new User("user1"));
-        when(userRepository.findByUserName("user2")).thenReturn(new User("user2"));
+        when(userRepository.findByUsername("user1")).thenReturn(new User("user1"));
+        when(userRepository.findByUsername("user2")).thenReturn(new User("user2"));
 
         Assertions.assertNotNull(controller.findByUserName("user1"));
     }
@@ -63,7 +63,7 @@ class UserEntityControllerTests {
     public void testNewUserIdAlreadyExists() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn("1");
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
         when(userRepository.findById("1")).thenReturn(Optional.of(user));
 
         ResponseEntity<String> resp = controller.addUser(user);
@@ -75,8 +75,8 @@ class UserEntityControllerTests {
     public void testNewUserUserNameAlreadyExists() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn(null);
-        when(user.getUserName()).thenReturn("user1");
-        when(userRepository.findByUserName("user1")).thenReturn(user);
+        when(user.getUsername()).thenReturn("user1");
+        when(userRepository.findByUsername("user1")).thenReturn(user);
 
         ResponseEntity<String> resp = controller.addUser(user);
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, resp.getStatusCode());
@@ -87,7 +87,7 @@ class UserEntityControllerTests {
     public void testNewUserThrowsException() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn("1");
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
         doThrow(NullPointerException.class).when(userRepository).save(user);
 
         ResponseEntity<String> resp = controller.addUser(user);
@@ -99,7 +99,7 @@ class UserEntityControllerTests {
     public void testNewUserHappyPath() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn("1");
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
 
         ResponseEntity<String> resp = controller.addUser(user);
         Assertions.assertEquals(HttpStatus.OK, resp.getStatusCode());
@@ -110,7 +110,7 @@ class UserEntityControllerTests {
     public void testUpdateIdIsNull() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn(null);
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
         when(userRepository.findById("1")).thenReturn(Optional.of(user));
 
         ResponseEntity<String> resp = controller.updateUser(user);
@@ -122,7 +122,7 @@ class UserEntityControllerTests {
     public void testUpdateIdIsNotFound() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn("1");
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
 
         ResponseEntity<String> resp = controller.updateUser(user);
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, resp.getStatusCode());
@@ -133,7 +133,7 @@ class UserEntityControllerTests {
     public void testUpdateUserHappyPath() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn("1");
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
         when(userRepository.findById("1")).thenReturn(Optional.of(user));
 
         ResponseEntity<String> resp = controller.updateUser(user);
@@ -145,7 +145,7 @@ class UserEntityControllerTests {
     public void testDeleteUserIsNotFound() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn(null);
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
 
         ResponseEntity<String> resp = controller.removeUser("1");
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, resp.getStatusCode());
@@ -156,7 +156,7 @@ class UserEntityControllerTests {
     public void testDeleteUserThrowsException() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn("1");
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
         when(userRepository.findById("1")).thenReturn(Optional.of(user));
         doThrow(NullPointerException.class).when(userRepository).delete(user);
 
@@ -169,7 +169,7 @@ class UserEntityControllerTests {
     public void testDeleteHappyPath() {
         User user = Mockito.mock(User.class);
         when(user.getId()).thenReturn("1");
-        when(user.getUserName()).thenReturn("user1");
+        when(user.getUsername()).thenReturn("user1");
         when(userRepository.findById("1")).thenReturn(Optional.of(user));
 
         ResponseEntity<String> resp = controller.removeUser("1");
@@ -179,7 +179,7 @@ class UserEntityControllerTests {
 
     @Test
     public void testLoginUserNotFound() {
-        when(userRepository.findByUserName("user1")).thenReturn(null);
+        when(userRepository.findByUsername("user1")).thenReturn(null);
         LoginRequest login = new LoginRequest();
         login.setPassword("1234");
         login.setUsername("user1");
@@ -191,7 +191,7 @@ class UserEntityControllerTests {
     public void testLoginPasswordsDontMatch() {
         User user = Mockito.mock(User.class);
         when(user.getPassword()).thenReturn(new BCryptPasswordEncoder().encode("pass1"));
-        when(userRepository.findByUserName("user1")).thenReturn(user);
+        when(userRepository.findByUsername("user1")).thenReturn(user);
         LoginRequest login = new LoginRequest();
         login.setPassword("pass2");
         login.setUsername("user1");
@@ -203,7 +203,7 @@ class UserEntityControllerTests {
     public void passwordsMatch() {
         User user = Mockito.mock(User.class);
         when(user.getPassword()).thenReturn(new BCryptPasswordEncoder().encode("pass2"));
-        when(userRepository.findByUserName("user1")).thenReturn(user);
+        when(userRepository.findByUsername("user1")).thenReturn(user);
         LoginRequest login = new LoginRequest();
         login.setPassword("pass2");
         login.setUsername("user1");
