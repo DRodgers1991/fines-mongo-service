@@ -21,11 +21,11 @@ public class UserEntityController {
 
     @PostMapping("validLogin")
     public ResponseEntity<String> validLogin(@RequestBody() LoginRequest request) {
-        User user = userRepository.findByUserName(request.getUsername());
+        User user = userRepository.findByUsername(request.getUsername());
         if(user != null) {
             if(ENCODER.matches(request.getPassword(), user.getPassword())) {
                 if(log.isDebugEnabled()) {
-                    log.debug("Valid Login attempt for {} ",user.getUserName());
+                    log.debug("Valid Login attempt for {} ",user.getUsername());
                 }
                 return new ResponseEntity<>(HttpStatus.OK);
             }
@@ -37,8 +37,8 @@ public class UserEntityController {
     }
 
     @GetMapping("findByUserName")
-    public User findByUserName(@RequestParam("user") String userName) {
-        return userRepository.findByUserName(userName);
+    public User findByUserName(@RequestParam("user") String username) {
+        return userRepository.findByUsername(username);
     }
 
     @GetMapping("findById")
@@ -84,7 +84,7 @@ public class UserEntityController {
         if(user.getId() != null && findById(user.getId()) != null) {
             return true;
         } else {
-            return user.getUserName() != null && findByUserName(user.getUserName()) != null;
+            return user.getUsername() != null && findByUserName(user.getUsername()) != null;
         }
     }
 

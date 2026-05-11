@@ -1,6 +1,5 @@
 package com.rodgers.fines.data.vo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,18 +9,18 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "password")
 @NoArgsConstructor
 public class User {
 
     @Id
     private String id;
-    private String userName;
+    private String username;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public User(String userName) {
-        this.userName = userName;
+    public User(String username) {
+        this.username = username;
     }
 
 
