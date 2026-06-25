@@ -1,6 +1,6 @@
 ext {
 
-    springBootVersion = '3.5.15'
+    springBootVersion = '3.5.16'
     lombokVersion = '1.18.46'
     loggingVersion = '2.26.0'
     junitVersion = '6.1.0'
